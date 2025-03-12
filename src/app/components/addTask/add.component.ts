@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { AfterContentInit, Component, OnDestroy, OnInit } from "@angular/core";
 
 @Component({
   selector: 'app-addTask',
@@ -8,16 +8,24 @@ import { Component, OnInit } from "@angular/core";
 
 })
 
-export class AddComponent implements OnInit{
+export class AddComponent implements OnDestroy, AfterContentInit{
 
 
-  ngOnInit(): void {
-    console.log("Creándose desde el ng on Init")
+  // ngOnInit(): void {
+  //   console.log("Creándose desde el ng on Init")
 
+  // }
+
+  // constructor(){
+  //   console.log("Creándose desde el constructor")
+
+  // }
+
+  ngOnDestroy(): void {
+    console.log("El componente ha sido destruido")
   }
 
-  constructor(){
-    console.log("Creándose desde el constructor")
-
+  ngAfterContentInit(): void {
+    console.log("El contenido proyectado ha sido inicializado")
   }
 }
