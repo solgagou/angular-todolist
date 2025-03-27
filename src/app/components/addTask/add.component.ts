@@ -1,31 +1,29 @@
-import { AfterContentInit, Component, OnDestroy, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
+import { NgForm } from "@angular/forms";  // IMPORTANTE: Para usar ngForm
 
 @Component({
   selector: 'app-addTask',
-  standalone: true,
   templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
-
+  styleUrls: ['./add.component.scss'],
 })
+export class AddComponent {
+  numberTasks: number = 10;
+  titleTask: string = '';
+  activeButton: boolean = true;
 
-export class AddComponent implements OnDestroy, AfterContentInit{
-
-
-  // ngOnInit(): void {
-  //   console.log("Creándose desde el ng on Init")
-
-  // }
-
-  // constructor(){
-  //   console.log("Creándose desde el constructor")
-
-  // }
-
-  ngOnDestroy(): void {
-    console.log("El componente ha sido destruido")
+  sendData(form: NgForm) {
+    if (form.valid) {
+      console.log(this.titleTask);
+    }
   }
 
-  ngAfterContentInit(): void {
-    console.log("El contenido proyectado ha sido inicializado")
+  sendTask() {
+    const sizeTitleTask = this.titleTask.split("");
+    if (sizeTitleTask.length > 0) {
+      this.activeButton = false;
+    } else {
+      this.activeButton = true;
+    }
+    console.log(`Tarea enviada con éxito! ${this.titleTask}`);
   }
 }

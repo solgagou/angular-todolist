@@ -1,5 +1,12 @@
-<div class="container_input">
-  <input type="text" placeholder="ingresar tarea">
-  <button>Ingresar tarea</button>
-</div>
+<h1>Número de tareas: {{ numberTasks }}</h1>
+<span>Título de tarea: {{ titleTask }} </span>
 
+<form class="container_input" #myForm = "ngForm" (ngSubmit)="sendData(myForm)">
+  <input type="text" placeholder="Ingresar tarea" [(ngModel)]="titleTask" #myInput = "ngModel" name ="taskTitle" required>
+  <button type ="submit" [disabled]="activeButton">Ingresar tarea</button>
+</form>
+
+{{ myInput.valid }}
+
+
+<!-- (click)="sendTask()"  -->
