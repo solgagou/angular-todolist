@@ -1,12 +1,39 @@
-<h1>Número de tareas: {{ numberTasks }}</h1>
-<span>Título de tarea: {{ titleTask }} </span>
+<h1 [ngClass]="{'r1-5': (numberTasks >=1 && numberTasks <=5), 'r5-10': (numberTasks >=5 && numberTasks <=10), 'r10-15': (numberTasks >10)}">Número de tareas: {{ numberTasks }}</h1>
+<span [ngStyle]="{'color': isActive ? 'green' : 'red'}">Título de tarea: {{ form.get('title')?.value }}</span>
 
+<!-- <p *ngIf="myInput.invalid && (myInput.dirty || myInput.touched)">
+  <span *ngIf="myInput.errors?.['required']"> Este campo es requerido </span>
+</p>
 <form class="container_input" #myForm = "ngForm" (ngSubmit)="sendData(myForm)">
   <input type="text" placeholder="Ingresar tarea" [(ngModel)]="titleTask" #myInput = "ngModel" name ="taskTitle" required>
-  <button type ="submit" [disabled]="activeButton">Ingresar tarea</button>
+  <button type ="submit" [disabled]="!myInput.valid">Ingresar tarea</button>
 </form>
 
-{{ myInput.valid }}
+{{ myInput.valid }} -->
 
+<div *ngIf="form.get('title')?.invalid && (form.get('title')?.dirty || form.get('title')?.touched)">
+  <small *ngIf="form.get('title')?.errors?.['required']">
+    El título es requerido
+  </small>
+  <small *ngIf="form.get('title')?.errors?.['maxlenth']">
+    El máximo de caracteres es de 10
+  </small>
+</div>
 
-<!-- (click)="sendTask()"  -->
+<hr>
+<h2>Tareas</h2>
+<div *ngFor="let task of tasks; let i = index">
+
+  <small>
+    {{i}}
+  </small>
+  {{ task }}
+</div>
+<hr>
+<!--
+<form class="container_input" [formGroup]="form" (ngSubmit)="sendTaskTitle()">
+  <input type="text" placeholder="Ingresar tarea" formControlName="title">
+  <button type ="submit" [disabled]="!form.valid">Enviar</button>
+</form>
+
+ -->

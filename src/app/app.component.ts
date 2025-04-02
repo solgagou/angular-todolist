@@ -8,13 +8,9 @@ import { RouterModule } from '@angular/router'; // IMPORTANTE: Para router-outle
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  standalone: true, // Esto indica que este componente es standalone
-  imports: [
-    AddComponent,   // Importamos AddComponent aquí
-    ListComponent,   // Importamos ListComponent aquí
-    FormsModule,     // Necesario para el uso de ngModel
-    RouterModule     // Necesario para router-outlet
-  ]
+  standalone: true,  // Añadir esta línea para hacer que AppComponent también sea standalone
+  imports: [AddComponent, ListComponent, FormsModule, RouterModule],
+
 })
 export class AppComponent implements DoCheck {
   value: number = 0;
